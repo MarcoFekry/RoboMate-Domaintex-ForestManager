@@ -117,25 +117,6 @@ Operators never handle code, script files or file paths. Results open as tables 
 The automation behind each step is delivered by RoboMate on demand and runs in memory, so updates reach every
 installation without reinstalling.
 
-## Architecture
-
-```text
- ┌──────────────────────────┐        ┌───────────────────────────────────────────────┐
- │  Browser (any modern)    │  HTTP  │  RoboMate Forest Manager engine (Windows)     │
- │  RoboMateDomaintex...    │◄──────►│  • console UI + API on 127.0.0.1:5090         │
- │  ForestManager:5090      │        │  • license check at every sign-in             │
- └──────────────────────────┘        │  • runs steps in the background (PowerShell)  │
-                                     │  • encrypted settings, state, audit, logs     │
- ┌──────────────────────────┐ start/ │                                               │
- │  Desktop launcher        │  stop  │        ▲ automation on demand (in memory)     │
- │  uptime · status · tray  │◄──────►│        │ license & activity records            │
- └──────────────────────────┘        └────────┼──────────────────────────────────────┘
-                                              │ HTTPS
-                                     ┌────────┴─────────┐     ┌─────────────────────────┐
-                                     │ RoboMate license │     │ Source & target forests │
-                                     │ & delivery       │     │ DCs · ADMT · clients    │
-                                     │ services         │     └─────────────────────────┘
-                                     └──────────────────┘
 ```
 
 | Component | Technology |
